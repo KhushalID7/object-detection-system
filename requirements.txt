@@ -1,4 +1,7 @@
-opencv-python
-streamlit
-numpy
-pillow
+pip install opencv-python
+pip install streamlit
+pip install numpy
+pip install pillow
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+pip install opencv-python numpy matplotlib
+pip install -U ultralytics
