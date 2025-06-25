@@ -13,7 +13,7 @@ haar_path = cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
 face_cascade = cv2.CascadeClassifier(haar_path)
 
 model = YOLOWorld(model_id="yolo_world/l")
-classes = ["person","hand", "backpack", "dog", "eye", "nose","Phone","Headphone","bottle","spectacles"]
+classes = ["person","hand","Phone","Headphone","bottle",]
 
 
 
