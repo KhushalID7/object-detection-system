@@ -25,7 +25,8 @@ def camera_stream(model, classes):
 
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         frame_rgb = cv2.flip(frame_rgb, 1)
-
+        frame = cv2.resize(frame, (640, 640))
+        
         results = model.predict(frame_rgb, conf=0.03)  # ✅ correct
 
         detections = sv.Detections.from_ultralytics(results[0])  # ✅ fix
