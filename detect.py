@@ -3,6 +3,15 @@ import cv2
 import supervision as sv
 from ultralytics import YOLOWorld
 import numpy as np
+import psycopg2
+
+def connect_to_db():
+    conn = psycopg2.connect(dbname="DEMOimg", user="postgres", password="1234")
+    cur = conn.cursor()
+
+    #cur.execute("insert into detection_record (Count, Class, image_data) values")
+    return conn, cur
+    
 
 def get_classes_from_input():
     cl = st.text_input("Class of object that you want to detect")
@@ -14,6 +23,7 @@ def load_model():
 def camera_stream(model, classes):
     FRAME_WINDOW = st.image([])
     camera = cv2.VideoCapture(0)
+    conn, cur = connect_to_db()
 
     model.set_classes(classes)  # Set your custom zero-shot class list
 
@@ -41,6 +51,9 @@ def camera_stream(model, classes):
         annotated_image = label_annotator.annotate(
             scene=annotated_image, detections=detections, labels=labels
         )
+        str1 = results[0].verbose()
+        cur.execute("insert into detection_record (image_data,result_text) values (%s,%s)", (annotated_image.tobytes(), str1))
+        conn.commit()  
 
         FRAME_WINDOW.image(annotated_image)
 
@@ -49,10 +62,11 @@ def camera_stream(model, classes):
 
 def main():
     st.set_page_config(page_title="Webcam Stream", layout="centered")
-    st.title("📸 Live Webcam Feed with OpenCV + Streamlit")
+    st.title("Welcome to object detection app")
 
     classes = get_classes_from_input()
     model = load_model()
+    #conn, cur = connect_to_db()
 
     if 'camera_on' not in st.session_state:
         st.session_state.camera_on = False
