@@ -34,7 +34,7 @@ def camera_stream(model, classes):
             break
 
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        frame_rgb = cv2.flip(frame_rgb, 1)
+        frame_rgb = cv2.flip(frame_rgb, 1)   #bkc not related to line
         frame = cv2.resize(frame, (640, 640))
         
         results = model.predict(frame_rgb, conf=0.03)  # ✅ correct
