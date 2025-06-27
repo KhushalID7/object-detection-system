@@ -33,9 +33,8 @@ def camera_stream(model, classes):
 
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         frame_rgb = cv2.flip(frame_rgb, 1)   #bkc not related to line
-        frame = cv2.resize(frame, (640, 640))
         
-        results = model.predict(frame_rgb, conf=0.03)  # ✅ correct
+        results = model.predict(frame_rgb, conf=0.3)  # ✅ correct
 
         detections = sv.Detections.from_ultralytics(results[0])  # ✅ fix
 
@@ -52,7 +51,8 @@ def camera_stream(model, classes):
         str1 = results[0].verbose()
         str_contain_person = "person" in str1.lower()
         if str_contain_person:
-            cur.execute("insert into only_person_detection(classes,image_data) values (%s,%s)", ( str1,annotated_image.tobytes()))
+            _, buffer = cv2.imencode(".jpg", cv2.cvtColor(annotated_image, cv2.COLOR_RGB2BGR))
+            cur.execute("insert into only_person_detection(classes, image_data) values (%s, %s)", (str1, buffer.tobytes()))
             conn.commit()
 
         FRAME_WINDOW.image(annotated_image)
