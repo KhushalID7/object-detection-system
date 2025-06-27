@@ -8,8 +8,6 @@ import psycopg2
 def connect_to_db():
     conn = psycopg2.connect(dbname="DEMOimg", user="postgres", password="1234")
     cur = conn.cursor()
-
-    #cur.execute("insert into detection_record (Count, Class, image_data) values")
     return conn, cur
     
 
