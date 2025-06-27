@@ -50,8 +50,10 @@ def camera_stream(model, classes):
             scene=annotated_image, detections=detections, labels=labels
         )
         str1 = results[0].verbose()
-        cur.execute("insert into detection_record (image_data,result_text) values (%s,%s)", (annotated_image.tobytes(), str1))
-        conn.commit()  
+        str_contain_person = "person" in str1.lower()
+        if str_contain_person:
+            cur.execute("insert into only_person_detection(classes,image_data) values (%s,%s)", ( str1,annotated_image.tobytes()))
+            conn.commit()
 
         FRAME_WINDOW.image(annotated_image)
 
