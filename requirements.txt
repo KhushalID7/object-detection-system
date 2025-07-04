@@ -4,11 +4,3 @@ streamlit==1.46.0
 supervision==0.25.1
 ultralytics==8.3.159
 torchvision==0.16.0
-torchvision
-Clip
-
-Pillow
-libglib2.0-0
-libsm6
-libxext6
-libxrender-dev
