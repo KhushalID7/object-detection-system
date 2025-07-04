@@ -5,3 +5,4 @@ supervision==0.25.1
 ultralytics==8.3.159
 torch==2.0.1
 torchvision==0.15.2
+clip
