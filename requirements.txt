@@ -8,4 +8,5 @@ opencv-contrib-python==4.10.0.84
 torchvision==0.15.2
 torchvision
 Clip
+cv2
 Pillow
