@@ -25,8 +25,7 @@ def camera_stream(model, classes):
             break
 
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        frame_rgb = cv2.flip(frame_rgb, 1)   #bkc not related to line
-          # bkc not related to line
+        frame_rgb = cv2.flip(frame_rgb, 1)   
         results = model.predict(frame_rgb, conf=confidence)  # ✅ correct
         detections = sv.Detections.from_ultralytics(results[0])  # ✅ fix
 
