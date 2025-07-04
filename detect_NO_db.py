@@ -14,8 +14,8 @@ def load_model():
 def camera_stream(model, classes):
     FRAME_WINDOW = st.image([])
     camera = cv2.VideoCapture(0)
-    
-
+    st.write("You can alter the confidence threshold to filter detections.")
+    confidence = st.slider("Confidence", 0.0, 1.0, 0.5)
     model.set_classes(classes)  # Set your custom zero-shot class list
 
     while st.session_state.camera_on:
@@ -26,9 +26,8 @@ def camera_stream(model, classes):
 
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         frame_rgb = cv2.flip(frame_rgb, 1)   #bkc not related to line
-        
-        results = model.predict(frame_rgb, conf=0.5)  # ✅ correct
-
+          # bkc not related to line
+        results = model.predict(frame_rgb, conf=confidence)  # ✅ correct
         detections = sv.Detections.from_ultralytics(results[0])  # ✅ fix
 
         bounding_box_annotator = sv.BoxAnnotator()
