@@ -2,8 +2,6 @@ numpy==2.3.1
 opencv_contrib_python==4.10.0.84
 opencv_python==4.9.0.80
 opencv_python_headless==4.11.0.86
-psycopg2==2.9.10
-psycopg2_binary==2.9.10
 streamlit==1.46.0
 supervision==0.25.1
 ultralytics==8.3.159
