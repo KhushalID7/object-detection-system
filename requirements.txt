@@ -6,7 +6,7 @@ ultralytics==8.3.159
 torchvision==0.16.0
 torchvision
 Clip
-cv2
+
 Pillow
 libglib2.0-0
 libsm6
