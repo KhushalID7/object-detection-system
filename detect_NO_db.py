@@ -1,6 +1,7 @@
 import streamlit as st
 import cv2
 import supervision as sv
+import clip
 from ultralytics import YOLOWorld
 import numpy as np
 
