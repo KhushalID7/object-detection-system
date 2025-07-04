@@ -8,4 +8,4 @@ opencv-contrib-python==4.10.0.84
 torchvision==0.15.2
 torchvision
 Pillow
-git+https://github.com/openai/CLIP.git
+pip install git+https://github.com/openai/CLIP.git
